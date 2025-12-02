@@ -1,0 +1,185 @@
+﻿/* --- 1. Réinitialisation et Polices --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+/* Réinitialisation de base pour une meilleure cohérence */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333; /* Gris foncé pour le texte */
+    background-color: #f9f9f9; /* Fond très légèrement gris */
+    padding-top: 60px; /* Espace pour le header fixe */
+}
+
+/* --- 2. En-tête et Navigation Fixe --- */
+
+header {
+    background: #ffffff;
+    color: #333;
+    padding: 15px 5%; /* Espace intérieur */
+    display: flex;
+    justify-content: space-between; /* Nom à gauche, menu à droite */
+    align-items: center;
+    position: fixed; /* Rend l'en-tête fixe en haut */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Petite ombre subtile */
+}
+
+    header h1 {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+    nav ul li {
+        margin-left: 20px;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+            nav ul li a:hover {
+                color: #b52b2b; /* Couleur d'accentuation (un rouge artistique discret) */
+            }
+
+/* --- 3. Contenu Principal et Sections --- */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    padding: 40px 0;
+}
+
+    section h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 300;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+/* --- 4. Mise en Page de la Galerie (Grille Responsive) --- */
+
+
+.artwork-grid {
+    display: grid;
+    /* Reste le même : 3 colonnes sur grand écran */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.artwork-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    /* ASSUREZ-VOUS QUE CE PADDING EST À ZÉRO ou inexistant pour l'effet de superposition */
+    padding: 0;
+}
+
+    .artwork-item:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+
+    /* Style de l'image à l'intérieur de l'item */
+    .artwork-item img {
+        width: 100%; /* L'image prend toute la largeur de son conteneur */
+        height: auto; /* La hauteur s'ajuste automatiquement */
+        display: block;
+        object-fit: cover; /* Assure que l'image couvre l'espace sans être déformée */
+        /* Vous pouvez ajouter un filtre ou une transition ici si vous voulez un effet au survol */
+    }
+
+.artwork-info {
+    padding: 15px;
+    background-color: #f7f7f7; /* Un fond très léger pour les infos */
+}
+
+    .artwork-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .artwork-info p {
+        font-size: 0.9rem;
+        color: #777;
+    }
+/* --- 5. Pied de Page --- */
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* --- Styles spécifiques pour l'effet Vidéo/Image au survol --- */
+
+/* La vidéo doit se superposer à l'image statique */
+.animated-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Cachée par défaut */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* L'image statique est visible par défaut */
+.static-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1; /* Visible par défaut */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Le conteneur parent doit être positionné pour les enfants */
+.artwork-item a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    /* Assurons-nous que le ratio est maintenu même sans image chargée */
+    padding-top: 100%; /* Définit un ratio 1:1 (carré). Ajustez si vos vidéos ne sont pas carrées. */
+}
+
+/* Correction des styles du .artwork-item global */
+.artwork-item {
+    padding: 0;
+    /* Retirez la transformation au survol pour cet effet si vous voulez */
+    /* transform: none; */
+}

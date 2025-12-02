@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nom de l'Artiste | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>[Nom de l'Artiste].</h1>
+        <nav>
+            <ul>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portfolio" class="gallery">
+            <h2>Portfolio</h2>
+            <div class="artwork-grid">
+
+                <div class="artwork-item"
+                     onmouseover="playVideo(this)"
+                     onmouseout="pauseVideo(this)">
+
+                    <a href="images/Oeuvreanime1.mp4">
+                        <img class="static-image" src="images/Oeuvre1.png" alt="Miniature de l'œuvre animée">
+
+                        <video class="animated-video" muted loop preload="none">
+                            <source src="images/Oeuvreanime1.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la balise vidéo.
+                        </video>
+                    </a>
+                    <div class="artwork-info">
+                        <h3>Titre de l'Œuvre 1 (Vidéo)</h3>
+                        <p>Animation numérique | 2024</p>
+                    </div>
+                </div>
+
+                <div class="artwork-item">
+                    <a href="images/sculpture2.jpg">
+                        <img src="images/sculpture2.jpg" alt="Sculpture en bronze, 2023">
+                    </a>
+                    <div class="artwork-info">
+                        <h3>Nom de la Création 2</h3>
+                        <p>Bronze et bois | 2023</p>
+                    </div>
+                </div>
+
+                <div class="artwork-item">
+                    <a href="images/photo3.jpg">
+                        <img src="images/photo3.jpg" alt="Photographie numérique monochrome">
+                    </a>
+                    <div class="artwork-info">
+                        <h3>Série Urbaine #3</h3>
+                        <p>Photographie numérique | 2022</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="apropos">
+            <h2>À Propos</h2>
+            <p>Présentez ici votre démarche artistique et votre biographie.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: votre.email@exemple.com</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Nom de l'Artiste]. Tous droits réservés.</p>
+    </footer>
+    <script>
+        function playVideo(element) {
+            // Trouve l'élément vidéo à l'intérieur du bloc d'œuvre survolé
+            const video = element.querySelector('.animated-video');
+            // Cache l'image statique
+            element.querySelector('.static-image').style.opacity = '0';
+            // Montre la vidéo et la met en lecture
+            video.style.opacity = '1';
+            video.play().catch(error => {
+                // Optionnel : Ajoutez une alerte pour voir si la lecture est bloquée
+                // alert("Erreur de lecture vidéo : " + error);
+            });
+        }
+
+        function pauseVideo(element) {
+            // Trouve l'élément vidéo
+            const video = element.querySelector('.animated-video');
+            // Met la vidéo en pause et la laisse à sa position actuelle
+            video.pause();
+
+            // Pour reprendre du début (si vous changez d'avis) :
+            // video.currentTime = 0;
+
+            // Montre à nouveau l'image statique
+            element.querySelector('.static-image').style.opacity = '1';
+            // Cache la vidéo
+            video.style.opacity = '0';
+        }
+    </script>
+</body>
+</html>
